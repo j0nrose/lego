@@ -1,0 +1,645 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --lego-red: #D50000;
+    --lego-yellow: #FFD600;
+    --lego-blue: #0D47A1;
+    --lego-green: #388E3C;
+    --lego-orange: #FF6D00;
+    --lego-purple: #7B1FA2;
+    --white: #FFFFFF;
+    --black: #000000;
+    --gray-light: #F5F5F5;
+    --gray-medium: #BDBDBD;
+    --gray-dark: #424242;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--gray-dark);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header and Navigation */
+.header {
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lego-logo {
+    display: flex;
+    gap: 2px;
+}
+
+.brick {
+    width: 20px;
+    height: 12px;
+    border-radius: 2px;
+    position: relative;
+}
+
+.brick::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: inherit;
+}
+
+.brick-red { background: var(--lego-red); }
+.brick-yellow { background: var(--lego-yellow); }
+.brick-blue { background: var(--lego-blue); }
+.brick-green { background: var(--lego-green); }
+.brick-orange { background: var(--lego-orange); }
+.brick-purple { background: var(--lego-purple); }
+
+.logo-text {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    color: var(--lego-red);
+    font-weight: 400;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--gray-dark);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--lego-red);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--gray-dark);
+    transition: all 0.3s ease;
+}
+
+/* Hero Section */
+.hero {
+    margin-top: 80px;
+    min-height: 80vh;
+    background: linear-gradient(135deg, var(--lego-blue) 0%, var(--lego-red) 100%);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.hero-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 4rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.highlight {
+    color: var(--lego-yellow);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: var(--lego-yellow);
+    color: var(--gray-dark);
+}
+
+.btn-primary:hover {
+    background: var(--lego-orange);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--white);
+    color: var(--lego-blue);
+    transform: translateY(-2px);
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    background: var(--lego-red);
+    color: var(--white);
+}
+
+.btn-small:hover {
+    background: var(--lego-blue);
+    transform: translateY(-2px);
+}
+
+/* Floating Bricks Animation */
+.hero-visual {
+    position: relative;
+    height: 400px;
+}
+
+.floating-bricks {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.floating-brick {
+    position: absolute;
+    width: 40px;
+    height: 24px;
+    border-radius: 4px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-brick::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: inherit;
+}
+
+.floating-brick:nth-child(1) {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.floating-brick:nth-child(2) {
+    top: 30%;
+    right: 30%;
+    animation-delay: 1s;
+}
+
+.floating-brick:nth-child(3) {
+    top: 50%;
+    left: 10%;
+    animation-delay: 2s;
+}
+
+.floating-brick:nth-child(4) {
+    top: 70%;
+    right: 20%;
+    animation-delay: 3s;
+}
+
+.floating-brick:nth-child(5) {
+    top: 20%;
+    left: 60%;
+    animation-delay: 4s;
+}
+
+.floating-brick:nth-child(6) {
+    top: 80%;
+    left: 40%;
+    animation-delay: 5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    66% {
+        transform: translateY(10px) rotate(-3deg);
+    }
+}
+
+/* Section Styles */
+.section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--gray-dark);
+}
+
+/* Featured Sets */
+.featured-sets {
+    padding: 5rem 0;
+    background: var(--gray-light);
+}
+
+.sets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.set-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.set-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.set-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.placeholder-image {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--lego-red), var(--lego-yellow), var(--lego-blue), var(--lego-green));
+    background-size: 400% 400%;
+    animation: gradientShift 3s ease infinite;
+}
+
+.brick-pattern {
+    position: relative;
+}
+
+.brick-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.3) 10px, transparent 11px),
+        radial-gradient(circle at 75% 25%, rgba(255,255,255,0.3) 10px, transparent 11px),
+        radial-gradient(circle at 25% 75%, rgba(255,255,255,0.3) 10px, transparent 11px),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.3) 10px, transparent 11px);
+    background-size: 50px 50px;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.set-info {
+    padding: 1.5rem;
+}
+
+.set-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--gray-dark);
+}
+
+.set-info p {
+    color: var(--gray-medium);
+    margin-bottom: 1rem;
+}
+
+.set-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lego-red);
+    margin-bottom: 1rem;
+}
+
+/* Themes Section */
+.themes {
+    padding: 5rem 0;
+}
+
+.themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.theme-card {
+    height: 300px;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.theme-card:hover {
+    transform: scale(1.05);
+}
+
+.theme-city { background: linear-gradient(135deg, var(--lego-blue), var(--gray-medium)); }
+.theme-space { background: linear-gradient(135deg, var(--black), var(--lego-purple)); }
+.theme-castle { background: linear-gradient(135deg, var(--gray-dark), var(--lego-red)); }
+.theme-technic { background: linear-gradient(135deg, var(--lego-orange), var(--lego-yellow)); }
+
+.theme-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: var(--white);
+}
+
+.theme-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* About Section */
+.about {
+    padding: 5rem 0;
+    background: var(--gray-light);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-text h2 {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.brick-tower {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.tower-brick {
+    width: 80px;
+    height: 48px;
+    border-radius: 8px;
+    position: relative;
+    animation: stackBricks 2s ease-in-out infinite alternate;
+}
+
+.tower-brick::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: inherit;
+}
+
+.tower-brick:nth-child(1) { animation-delay: 0s; }
+.tower-brick:nth-child(2) { animation-delay: 0.2s; }
+.tower-brick:nth-child(3) { animation-delay: 0.4s; }
+.tower-brick:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes stackBricks {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(10px); }
+}
+
+/* Footer */
+.footer {
+    background: var(--gray-dark);
+    color: var(--white);
+    padding: 3rem 0 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    margin-bottom: 1rem;
+    color: var(--lego-yellow);
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--lego-yellow);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    padding: 0.5rem 1rem;
+    background: var(--lego-red);
+    border-radius: 25px;
+    transition: background 0.3s ease;
+}
+
+.social-link:hover {
+    background: var(--lego-blue);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gray-medium);
+    opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background-color: var(--white);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: var(--shadow);
+        padding: 2rem 0;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .sets-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .themes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .themes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}
